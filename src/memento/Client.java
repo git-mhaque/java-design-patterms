@@ -1,0 +1,51 @@
+/*******************************************************************************
+ * Copyright (c) 2003-2013 Mahfuzul Haque	
+ * 
+ * This file is part of java-design-patterns which provides example implementations of 23 GoF design patterns.
+ *   
+ *  
+ * java-design-patterns is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *  
+ * java-design-patterns is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *  
+ * You should have received a copy of the GNU General Public License
+ * along with java-design-patterns.  If not, see <http://www.gnu.org/licenses/>.
+ ******************************************************************************/
+/*
+ * Created on Dec 17, 2003
+ *
+ */
+package memento;
+
+public class Client {
+
+	// P1 : W-N-S-E
+	// P2 : S-W-E 	
+	public static void main(String[] args) {
+		Caretaker ct = new Caretaker();
+
+		Player p1 = new Player("P1","W");
+		Player p2 = new Player("P2","S");
+
+		ct.sendCommand(new MoveCommand(p1,"N"));  
+		ct.sendCommand(new MoveCommand(p2,"W"));  
+		ct.sendCommand(new MoveCommand(p2,"E"));  
+		ct.sendCommand(new MoveCommand(p1,"S"));  
+		ct.sendCommand(new MoveCommand(p1,"E"));  
+
+		System.out.println("Undo starts now");
+		
+		ct.undo();  
+		ct.undo();  
+		ct.undo();  
+		ct.undo();  
+		ct.undo();  
+
+	}
+}
